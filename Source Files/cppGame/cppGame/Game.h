@@ -26,6 +26,7 @@ private:
 
 	// Mouse position
 	sf::Vector2i mousePosWindow;
+	sf::Vector2f mousePosView;
 
 	//Game Logic
 	int points;
@@ -54,6 +55,7 @@ public:
 
 	// Functions
 	void spawnEnemy();
+	
 
 	void pollEvents();
 	void updateMousePos();
