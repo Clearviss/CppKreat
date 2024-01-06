@@ -1,8 +1,5 @@
 ﻿  Game.cpp
-C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(11,8): warning C4101: "enemySpawnTimerMax": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(10,8): warning C4101: "enemySpawnTimer": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(9,6): warning C4101: "points": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(12,6): warning C4101: "maxEnemies": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(105,27): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(118,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(108,27): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(121,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\cppGame\Game.cpp(144,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
   cppGame.vcxproj -> C:\Users\HARDPC\Desktop\cppBig\Source Files\cppGame\Debug\cppGame.exe

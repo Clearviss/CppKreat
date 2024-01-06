@@ -6,16 +6,14 @@ void Game::initializeVariables()
 {
 	this->window = nullptr;
 	//Game logic
-	int points;
-	float enemySpawnTimer;
-	float enemySpawnTimerMax;
-	int maxEnemies;
-
+	
 	this->points = 0;
 	this->enemySpawnTimer = 0.f;
 	this->enemySpawnTimerMax = 1.f;
 	this->maxEnemies = 10;
-
+	this->mouseDown = false;
+	this->health = 10;
+	this->endgame = false;
 }
 
 void Game::initWindow()
@@ -60,6 +58,11 @@ Game::~Game()
 const bool Game::getWindowIsOpen() const
 {
 	return this->window->isOpen();
+}
+
+const bool Game::getEndGame() const
+{
+	return this->endgame;
 }
 
 void Game::spawnEnemy()
@@ -120,35 +123,58 @@ void Game::updateEnemies()
 		bool deleted = false;
 		this->enemies[i].move(0.f, 3.f);
 
-		// click collision
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (this->enemies[i].getPosition().y > this->window->getSize().y) 
 		{
-			if (this->enemies[i].getGlobalBounds().contains(this->mousePosView))
-			{
-				deleted = true;
-
-				this->points += 10;
-			}
+			this->enemies.erase(this->enemies.begin() + i);
+			this->health--;
+			std::cout << "Health: " << this->health << std::endl;
+			if (this->health <= 0) this->endgame = true;
+			
+		
+			
 		}
-		if (this->enemies[i].getPosition().y > this->window->getSize().y)
-		{
-			deleted = true;
-		}
-		if (deleted) this->enemies.erase(this->enemies.begin() + i);
-
 	}
 
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (this->mouseDown == false)
+		{
+			this->mouseDown = true;
+			bool deleted = false;
+			for (int i = 0; i < this->enemies.size() && deleted == false; i++)
+			{
+				if (this->enemies[i].getGlobalBounds().contains(this->mousePosView))
+				{
+					deleted = true;
+					this->enemies.erase(this->enemies.begin() + i);
+
+					this->points += 10;
+					std::cout << "Points: " << this->points << std::endl;
+				}
+			}
+		}
+		
+	}
+	else
+	{
+		this->mouseDown = false;
+	}
 }
 
 void Game::update()
 {
 	this->pollEvents();
-	this->updateMousePos();
-	this->updateEnemies();
+	if (!this->endgame)
+	{
+		this->updateMousePos();
+		this->updateEnemies();
+	}
+
+	
 	// Screen relative aka viewpoint
 	// std::cout << "Mouse Position: " << sf::Mouse::getPosition().x << ", " << sf::Mouse::getPosition().y << std::endl;
 	// Window relative
-	std::cout << "Mouse Position: " << sf::Mouse::getPosition(*this->window).x << ", " << sf::Mouse::getPosition(*this->window).y << std::endl;
+	//std::cout << "Mouse Position: " << sf::Mouse::getPosition(*this->window).x << ", " << sf::Mouse::getPosition(*this->window).y << std::endl;
 	
 
 	// Box (this->enemy) on the center of mouse position this->enemy.setPosition(sf::Vector2f(sf::Mouse::getPosition(*this->window).x - 25, sf::Mouse::getPosition(*this->window).y - 25));
